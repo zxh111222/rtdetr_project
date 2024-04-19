@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>钢材表面缺陷检测系统</title>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe Script', cursive;
+            /*background-color: #f0f0f0;*/
+            background-image: url("{% static '3.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            height: 90vh;
+        }
+
+        /*######################################*/
+
+        /* 固定导航栏 */
+        .nav {
+            height: 60px;
+            width: 100%;
+            border-bottom: 1px solid black;
+            display: flex;
+            justify-self: flex-start;
+            align-self: flex-start;
+        }
+        .navbar-nav {
+            display: inline-block; /* 设置导航栏列表项为inline-block元素 */
+            list-style: none;
+            height: 60px; /* 设置列表项高度为60px */
+            line-height: 60px;
+            padding: 0 90px; /* 设置列表项左右内边距为40px */
+        }
+
+
+        /* 导航栏链接样式 */
+        .nav-link {
+            color: #000; /* 设置链接颜色为黑色 */
+            text-decoration: none; /* 去掉链接下划线 */
+        }
+
+        .detect-img {
+            width: 45px;
+            height: 45px;
+            margin: -10px;
+        }
+
+        .text-detect {
+            padding-left: 30px;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+        /*#####################################*/
+
+        main {
+            height: 100%;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .index-container {
+            height: 550px;
+            width: 1200px;
+            max-width: 1200px;
+            padding: 5px;
+            background-color: rgba(240, 240, 240, 0.8);
+            box-shadow:
+                0px 0px 0px 5px rgba( 255,255,255,0.4 ),
+                0px 4px 20px rgba( 0,0,0,0.33 );
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 8px;
+            text-align: center;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /*#################################################*/
+        .custom-btn {
+            width: 200px;
+            height: 40px;
+            color: #000;
+            margin: 10px 0;
+            border-radius: 5px;
+            padding: 10px 10px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 500;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-block;
+            box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+            7px 7px 20px 0px rgba(0,0,0,.1),
+            4px 4px 5px 0px rgba(0,0,0,.1);
+            outline: none;
+            text-align: center; /* 水平居中 */
+            line-height: 40px; /* 垂直居中 */
+        }
+
+        .btn-8 {
+            background-color: #f0ecfc;
+            background-image: linear-gradient(315deg, #f0ecfc 0%, #c797eb 74%);
+            line-height: 42px;
+            padding: 0;
+            border: none;
+        }
+        .btn-8 span {
+          position: relative;
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+        .btn-8:before,
+        .btn-8:after {
+          position: absolute;
+          content: "";
+          right: 0;
+          bottom: 0;
+          background: #c797eb;
+          /*box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+                      -4px -4px 6px 0 rgba(116, 125, 136, .2),
+            inset -4px -4px 6px 0 rgba(255,255,255,.5),
+            inset 4px 4px 6px 0 rgba(116, 125, 136, .3);*/
+          transition: all 0.3s ease;
+        }
+        .btn-8:before{
+           height: 0%;
+           width: 2px;
+        }
+        .btn-8:after {
+          width: 0%;
+          height: 2px;
+        }
+        .btn-8:hover:before {
+          height: 100%;
+        }
+        .btn-8:hover:after {
+          width: 100%;
+        }
+        .btn-8:hover{
+          background: transparent;
+        }
+        .btn-8 span:hover{
+          color: #c797eb;
+        }
+        .btn-8 span:before,
+        .btn-8 span:after {
+          position: absolute;
+          content: "";
+          left: 0;
+          top: 0;
+          background: #c797eb;
+          /*box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+                      -4px -4px 6px 0 rgba(116, 125, 136, .2),
+            inset -4px -4px 6px 0 rgba(255,255,255,.5),
+            inset 4px 4px 6px 0 rgba(116, 125, 136, .3);*/
+          transition: all 0.3s ease;
+        }
+        .btn-8 span:before {
+          width: 2px;
+          height: 0%;
+        }
+        .btn-8 span:after {
+          height: 2px;
+          width: 0%;
+        }
+        .btn-8 span:hover:before {
+          height: 100%;
+        }
+        .btn-8 span:hover:after {
+          width: 100%;
+        }
+
+        /*##################################################*/
+
+        #weather-info {
+            width: 200px;
+            height: 170px;
+            border: 2px solid black;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .left-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-right: 40px;
+        }
+
+        .right-box {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #original_image_preview, #predicted_image_preview {
+            margin: 10px 30px;
+            width: 350px;
+            height: 350px;
+        }
+
+        .left-box #weather-info p {
+            margin: 2px 0;
+        }
+
+        #weather-img {
+            border: 1px solid black;
+            width: 60px;
+            height: 60px;
+            margin-left: 15px;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <div class="navbar-nav">
+            <div class="imageAndText">
+                <img src="{% static 'detect.png' %}" alt="Logo" class="detect-img">
+                <a class="nav-link" href="#">
+                    <span class="text-detect">钢材表面缺陷检测系统</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <main>
+        <div class="index-container">
+            {% if error_message %}
+                <p style="color: red;">{{ error_message }}</p>
+            {% endif %}
+
+            <!-- 左边框 -->
+            <div class="left-box">
+                <div id="weather-info">
+                    {% if weather_info %}
+                        <div>
+                            <p>地区：厦门</p>
+                            <p>温度：{{ weather_info.temperature }}°C</p>
+                            <p>天气：{{ weather_info.description }}</p>
+                            <p>湿度：{{ weather_info.humidity }}%</p>
+                            <p>风速：{{ weather_info.wind_speed }} m/s</p>
+                            <p>风向：{{ weather_info.wind_direction }}°</p>
+                        </div>
+                        <img id="weather-img" src="http://openweathermap.org/img/wn/{{ weather_info.icon }}.png" alt="天气图标">
+                    {% else %}
+                        <p style="color: red;">获取天气信息失败。</p>
+                    {% endif %}
+                </div>
+
+
+
+                <div class="selection-pt">
+                    <div class="choose">
+                        <button class="custom-btn btn-8" type="button" onclick="document.getElementById('pt_file').click()">点击这里选择权重文件</button>
+                        <input type="file" name="pt_file" id="pt_file" style="display: none;">
+                    </div>
+                    <span id="choose-pt"></span>
+                </div>
+                <div class="selection-img">
+                    <div class="choose">
+                        <button class="custom-btn btn-8" type="button" onclick="document.getElementById('image_file').click()">点击这里选择所要预测的图片</button>
+                        <input type="file" name="image_file" id="image_file" style="display: none;" onchange="previewImage(event)">
+                    </div>
+                </div>
+
+
+                <button class="custom-btn btn-8" type="button" onclick="detectObjects()">开始检测</button>
+                <button class="custom-btn btn-8" type="button" onclick="saveImage()">保存预测图片</button>
+                <button class="custom-btn btn-8" type="button" onclick="returnToIndex()">退出登录</button>
+            </div>
+
+            <!-- 右边框 -->
+            <div class="right-box">
+                <div id="original-image">
+                    <img src="{% static '6-1.png' %}" alt="Original Image" id="original_image_preview" class="preview-img">
+                </div>
+                <div id="predicted-image">
+                    <img src="{% static '6-2.png' %}" alt="Predicted Image" id="predicted_image_preview" class="preview-img">
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function selectPtFile(event) {
+            var fileName = event.target.files[0].name;
+            var fileExtension = fileName.split('.').pop().toLowerCase();
+            if (fileExtension === 'pt' || fileExtension === 'pth') {
+                document.getElementById('choose-pt').innerText = '已选择：' + fileName;
+            } else {
+                alert('请选择正确的权重文件');
+                document.getElementById('pt_file').value = ''; // 清除选择的文件
+                document.getElementById('choose-pt').innerText = '选择权重文件';
+            }
+        }
+
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function(){
+                var imagePreview = document.getElementById('original_image_preview');
+                imagePreview.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        function saveImage() {
+            var predictedImage = document.getElementById('predicted_image_preview');
+            var canvas = document.createElement('canvas');
+            var context = canvas.getContext('2d');
+            canvas.width = predictedImage.width;
+            canvas.height = predictedImage.height;
+            context.drawImage(predictedImage, 0, 0);
+
+            var link = document.createElement('a');
+            link.download = 'predicted_image.png'; // 保存文件的名称
+            link.href = canvas.toDataURL('image/png').replace("image/png", "image/octet-stream");
+            link.click();
+        }
+
+        function detectObjects() {
+            var ptFileInput = document.getElementById('pt_file');
+            var imageFileInput = document.getElementById('image_file');
+
+            var formData = new FormData();
+            formData.append('pt_file', ptFileInput.files[0]);
+            formData.append('image_file', imageFileInput.files[0]);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', "{% url 'detect_objects_view' %}", true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        var responseData = JSON.parse(xhr.responseText);
+                        if (responseData.hasOwnProperty('image')) {
+                            var predictedImagePreview = document.getElementById('predicted_image_preview');
+                            predictedImagePreview.src = "data:image/jpeg;base64," + responseData.image;
+                        } else if (responseData.hasOwnProperty('error')) {
+                            alert("错误：" + responseData.error);
+                        }
+                    } else {
+                        alert("错误：无法检测到对象。");
+                    }
+                }
+            };
+            xhr.send(formData);
+        }
+
+        function returnToIndex() {
+            window.location.href = "{% url 'login' %}";
+        }
+
+
+
+
+        // 监听选择.pt文件按钮的点击事件
+        document.getElementById('pt_file').addEventListener('change', selectPtFile);
+
+    </script>
+
+</body>
+</html>
